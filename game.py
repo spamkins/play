@@ -27,3 +27,18 @@ while running:
         elif event.type == QUIT:
             running = False
 
+    screen.fill((0, 0, 0))
+
+    surf = pygame.Surface((50, 50))
+
+    surf.fill((255, 0, 0))
+    rect = surf.get_rect()
+
+    surf_centre = (
+        (SCREEN_WIDTH - surf.get_width()) / 2,
+        (SCREEN_HEIGHT - surf.get_height()) / 2
+    )
+
+    screen.blit(surf, surf_centre)
+    pygame.display.flip()
+
