@@ -68,7 +68,14 @@ pg.init()
 screen = pg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pg.time.Clock()
 
+ADD_ENEMY = pg.USEREVENT + 1
+pg.time.set_timer(ADD_ENEMY, 250)
+
 player = Player()
+
+enemies = pg.sprite.Group()
+all_sprites = pg.sprite.Group()
+all_sprites.add(player)
 
 running = True
 
@@ -81,12 +88,20 @@ while running:
         elif event.type == QUIT:
             running = False
 
+        elif event.type == ADD_ENEMY:
+            enemy = Enemy()
+            enemies.add(enemy)
+            all_sprites.add(enemy)
+
     pressed_keys = pg.key.get_pressed()
 
     player.update(pressed_keys)
+    enemies.update()
 
     screen.fill(BG_COLOUR)
-    screen.blit(player.surf, player.rect)
+
+    for entity in all_sprites:
+        screen.blit(entity.surf, entity.rect)
 
     # Update the display
     pg.display.flip()
