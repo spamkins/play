@@ -26,7 +26,22 @@ class Player(pg.sprite.Sprite):
 
     def update(self, pressed_keys):
         if pressed_keys[K_UP]:
+            # possibly introduce more elaborate key combinations
+            # if press_keys[K_DOWN]:
+                 # do nothing as they cancel out
+            
+            # either way, create a function called moveUp(), which is called here.
+            
+            # function moveUp() {
+            #    self.rect.move_ip(0, -5)
+            
+            #    set sprite is also called within the moveUp method.
+            #      - it will accept some string (inside the set sprite method it maps to the relevant coordinates in the sprite sheet).
+            
+            #    setSprite(PlayerSpriteActions.UP) 
+           
             self.rect.move_ip(0, -5)
+        # if press
         if pressed_keys[K_DOWN]:
             self.rect.move_ip(0, 5)
         if pressed_keys[K_LEFT]:
@@ -51,6 +66,11 @@ class Enemy(pg.sprite.Sprite):
         self.surf.fill(ENEMY_COLOUR)
         self.rect = self.surf.get_rect(
             center=(
+                
+                # I think in terms of code quality, you'd be better of not generating the random stuff WITHIN the instance,
+                # perhaps introduce a EnemyFactory.create() method, which does the random stuff, then passes it to the
+                # enemy. This is because you don't really want non-deterministic constructors in practice, and this will
+                # aid with testing.
                 random.randint(SCREEN_WIDTH + 20, SCREEN_WIDTH + 100),
                 random.randint(0, SCREEN_HEIGHT),
             )
