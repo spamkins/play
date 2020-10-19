@@ -58,6 +58,17 @@ while running:
         player.kill()
         running = False
 
+    # add a method here:
+    
+    # if(online) {
+    #       updateNetwork() or updateServer() 
+    
+    # which just takes the position of your player, and any enemies, or any relevant state of the game.
+    # - this would be cool because while it can just be empty for now, it could be extended to post the position of your
+    # player onto someone else running instance, and then you could have a receive method, which will just render other players
+    # on your existing game (and respond to their movements). While they can't interact at the moment, it would be cool and
+    # I don't mind designing the networking and all that.
+        
     # Update the display
     pg.display.flip()
     clock.tick(60)
